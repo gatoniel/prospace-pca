@@ -9,8 +9,11 @@ class ProspacePCA(object):
         self.w, self.v, self.A = prospace_pca(X)
 
     def transform(self, X):
-        return transform(normalize(X), self.v)[:, : self.dimension]
+        return self.full_transform(X)[:, : self.dimension]
 
     def fit_transform(self, X):
         self.fit(X)
         return self.transform(X)
+
+    def full_transform(self, X):
+        return transform(normalize(X), self.v)
