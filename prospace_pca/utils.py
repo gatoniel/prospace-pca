@@ -16,6 +16,7 @@ def frechet_similarity_distance(x, points):
 
 
 def prospace_pca(points):
+    points = normalize(points)
     A = np.matmul(points.T, points)
     w, v = np.linalg.eigh(A)
 

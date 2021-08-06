@@ -1,4 +1,4 @@
-from .utils import prospace_pca, transform
+from .utils import prospace_pca, transform, normalize
 
 
 class ProspacePCA(object):
@@ -9,8 +9,8 @@ class ProspacePCA(object):
         self.w, self.v, self.A = prospace_pca(X)
 
     def transform(self, X):
-        return transform(X, self.v)[:, : self.dimension]
+        return transform(normalize(X), self.v)[:, : self.dimension]
 
     def fit_transform(self, X):
-        self.w, self.v, self.A = prospace_pca(X)
+        self.fit(X)
         return self.transform(X)
