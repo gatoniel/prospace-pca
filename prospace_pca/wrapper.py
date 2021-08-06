@@ -1,4 +1,4 @@
-from .utils import prospace_pca, reduce_dimensions
+from .utils import prospace_pca, transform
 
 
 class ProspacePCA(object):
@@ -9,7 +9,7 @@ class ProspacePCA(object):
         self.w, self.v, self.A = prospace_pca(X)
 
     def transform(self, X):
-        return reduce_dimensions(X, self.v, self.dimension)
+        return transform(X, self.v)[:, : self.dimension]
 
     def fit_transform(self, X):
         self.w, self.v, self.A = prospace_pca(X)

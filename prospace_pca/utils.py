@@ -40,6 +40,13 @@ def prospace_pca(points):
         if not test[0] and not test[1]:
             warnings.warn(f"Component {i} is not a saddle point!")
 
+    for i in range(v.shape[0]):
+        v_ = v[:, i]
+        mi = v_.min()
+        ma = v_.max()
+        if np.abs(mi) > ma:
+            v[:, i] *= -1
+
     return w, v, A
 
 
